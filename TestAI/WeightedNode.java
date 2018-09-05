@@ -6,35 +6,35 @@ import java.util.List;
 public class WeightedNode
 {
     public Point Location;
+    public int Index;
     public int Cost;
     public List<WeightedNode> Next;
     public WeightedNode Last;
     public int Step;
     public boolean[] Used;
-    public int[][] CostMap;
 
-    public WeightedNode(Point location, int cost, int step, boolean[] used, int[][] costMap){
+    public WeightedNode(Point location, int cost, int step, boolean[] used, int index){
         Location = location;
         Cost = cost;
         Next = new ArrayList<WeightedNode>();
         Step = step;
         Used = used;
-        CostMap = costMap;
+        Index = index;
     }
 
-    public WeightedNode(Point location, int cost, boolean[] used)
+    public WeightedNode(Point location, int cost, boolean[] used, int index)
     {
         Location = location;
         Cost = cost;
         Next = new ArrayList<WeightedNode>();
         Used = used;
+        Index = index;
     }
 
     public void Add(WeightedNode child)
     {
-        child.Step = Step + 1;
-        child.CostMap = CostMap;
         child.Last = this;
+        child.Step = Step + 1;
         Next.add(child);
     }
 
