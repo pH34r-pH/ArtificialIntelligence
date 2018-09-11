@@ -19,6 +19,7 @@ public class PacSimRNNA implements PacAction {
 
     private int simTime;
     private WeightedNodeFactory thinker;
+    private boolean print = true;
       
     public PacSimRNNA( String fname ) {
         PacSim sim = new PacSim( fname );
@@ -49,38 +50,34 @@ public class PacSimRNNA implements PacAction {
         // if current path is empty, generate the path
       
         if( !thinker.isLoaded ) {
+            long timer = System.currentTimeMillis();
+
             thinker.Init(pc, grid);
-
-            System.out.println("Cost table:");
-            thinker.PrintCostMap();
-
-            System.out.println("\nFood Array:");
-            thinker.PrintFoodList();
-            
             thinker.Build();
 
-            for(int i = 0; i < food.size(); ++i){
-                System.out.printf("%d : cost=%d : ", i, thinker.root.Next.get(i).PathToHereCost());
-                thinker.root.Next.get(i).Print();
-                System.out.println();
-            }
+            timer = System.currentTimeMillis() - timer;
 
-            //-----------------------------------------------------------------------------------------
-            /*
-            Point tgt = PacUtils.nearestFood( pc.getLoc(), grid);
-            path = BFSPath.getPath(grid, pc.getLoc(), tgt);
-         
-            System.out.println("Pac-Man currently at: [ " + pc.getLoc().x + ", " + pc.getLoc().y + " ]");
-            System.out.println("Setting new target  : [ " + tgt.x + ", " + tgt.y + " ]");
-            */
+            if(print)
+            {
+                System.out.println("Cost table:\n");
+                thinker.PrintCostMap();
+
+                System.out.println("\nFood Array:\n");
+                thinker.PrintFoodList();
+
+                thinker.PrintSteps();
+
+                System.out.printf("\nTime to generate plan: %d msec\n", timer);
+            }
+            
+            System.out.println("\nSolution moves:\n");
         }
       
         // take the next step on the current path
-        /*
-        Point next = path.remove( 0 );
+        Point next = thinker.TakeStep();
         PacFace face = PacUtils.direction( pc.getLoc(), next );
-        System.out.printf( "%5d : From [ %2d, %2d ] go %s%n", ++simTime, pc.getLoc().x, pc.getLoc().y, face );
-        */
-        return null;
+        System.out.printf( "%5d : From [ %2d, %2d ] go %s%n", thinker.step, pc.getLoc().x, pc.getLoc().y, face );
+        
+        return face;
     }
 }
