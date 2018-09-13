@@ -1,4 +1,3 @@
-
 import java.awt.Point;
 import java.lang.Math;
 import java.util.ArrayList;
