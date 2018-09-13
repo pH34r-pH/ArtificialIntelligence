@@ -12,8 +12,9 @@ import pacsim.PacUtils;
 import pacsim.PacmanCell;
 
 /**
- * Simple Repetitive Nearest Neighbor Agent
- * @author Tyler Harbin-Giuntoli
+ * University of Central Florida
+ * CAP4630 - Fall 2018
+ * @author : Tyler Harbin-Giuntoli
  */
 public class PacSimRNNA implements PacAction {
 

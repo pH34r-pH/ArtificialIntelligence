@@ -11,6 +11,12 @@ import pacsim.PacSim;
 import pacsim.PacUtils;
 import pacsim.PacmanCell;
 
+/**
+ * University of Central Florida
+ * CAP4630 - Fall 2018
+ * @author : Tyler Harbin-Giuntoli
+ */
+
 public class WeightedNodeFactory
 {
     // Private Fields

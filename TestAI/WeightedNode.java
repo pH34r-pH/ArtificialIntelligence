@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
+/**
+ * University of Central Florida
+ * CAP4630 - Fall 2018
+ * @author : Tyler Harbin-Giuntoli
+ */
+
 public class WeightedNode implements Comparable<WeightedNode>
 {
     public Point Location;
